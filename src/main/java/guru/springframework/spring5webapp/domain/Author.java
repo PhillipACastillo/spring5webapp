@@ -2,7 +2,7 @@ package guru.springframework.spring5webapp.domain;
 
 import javax.annotation.Generated;
 import javax.persistence.*;
-import java.awt.print.Book;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,6 +12,7 @@ public class Author {
   private Long id;
 
   private String firstName;
+  private String lastName;
 
   public Long getId() {
     return id;
@@ -21,15 +22,13 @@ public class Author {
     this.id = id;
   }
 
-  private String lastName;
 
   @ManyToMany(mappedBy = "authors")
-  private Set<Book> books;
+  private Set<Book> books = new HashSet<>();
 
-  public Author(String firstName, String lastName, Set<Book> books) {
+  public Author(String firstName, String lastName) {
     this.firstName = firstName;
     this.lastName = lastName;
-    this.books = books;
   }
 
   public Author() {
